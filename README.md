@@ -2,7 +2,7 @@
 ### Программа для моделирования библиотеки с сипользованием фреймворка Flask
 
 Получение:  
-git clone https://github.com/vzaletny/school_library.git
+git clone https://github.com/DimasikZlt/school_library.git
 
 Установка:
 * Системый Python: 
