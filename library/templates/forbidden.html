@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %} Доступ запрещен {% endblock %}
+
+{% block main_content %}
+    <div class="form-group">
+        <form action="" method="post" novalidate>
+            <div class="container">
+                <div class="card">
+                    <div class="card-header">Доступ запрещен!!!</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Попытка неавторизированного доступа!</h5>
+                        <p class="card-text">
+                            Пользователь <strong>{{ current_user.last_name ~' '~ current_user.first_name }}</strong>
+                            предпринял попыткку неавторизованного доступа к персональным данным!
+                            <br>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block additional_css %}
+    <!-- this would be css from warning.html -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/warning_form.css') }}"/>
+{% endblock %}

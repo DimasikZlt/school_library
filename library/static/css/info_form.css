@@ -1,0 +1,24 @@
+.form-group {
+    max-width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+}
+
+
+.btn {
+    width: 30%;
+    margin-right: 10px;
+    margin-left: 0px;
+    max-width: 100px;
+    margin-bottom: 20px;
+}
+.card-title {
+    color: darkblue;
+    font-size: 32px;
+}
+
+.card-header {
+    color: mediumblue;
+    background-color: lightcyan;
+}

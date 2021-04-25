@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %} Книга {% endblock %}
+
+{% block main_content %}
+    <div class="form-group">
+        <form action="" method="post" novalidate>
+            <h4>Книга</h4>
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.users.label }}
+                {{ form.users(class="form-control form-control-sm") }}
+
+                {{ form.books.label }}
+                {{ form.books(class="form-control form-control-sm") }}
+            </p>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                {{ form.submit(class="btn btn-success btn-sm me-md-2") }}
+                {{ form.cancel(class="btn btn-secondary btn-sm me-md-2") }}
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block additional_css %}
+    <!-- this would be css from user_form.html -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/user_form.css') }}"/>
+{% endblock %}

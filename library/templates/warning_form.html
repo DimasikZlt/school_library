@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %} Предупреждение {% endblock %}
+
+{% block main_content %}
+    <div class="form-group">
+        <form action="" method="post" novalidate>
+            {{ form.hidden_tag() }}
+            <div class="container">
+                <div class="card">
+                    <div class="card-header">{{ title }}</div>
+                    <div class="card-body">
+                        <h5 class="card-title">Удаление!</h5>
+                        <p class="card-text"> {{ message }}<br>
+                            <strong>{{ obj }}</strong></p>
+                    </div>
+                    <div class="d-grid gap-20 d-md-flex justify-content-md-end">
+                        {{ form.submit(class="btn btn-danger btn-sm") }}
+                        {{ form.cancel(class="btn btn-secondary btn-sm") }}
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block additional_css %}
+    <!-- this would be css from warning.html -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/warning_form.css') }}"/>
+{% endblock %}

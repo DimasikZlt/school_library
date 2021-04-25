@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %} Список авторов {% endblock %}
+
+{% block main_content %}
+    <div>
+        <table class="table table-light table-hover table-striped table-responsive w-auto mw-100">
+            <caption>{{ caption_table }}
+                <div style="position:relative;float:right;">
+                    <a class="plus-btn" href="{{ url_for('authors.add_author') }}" role="button">
+                        <i class="bi bi-plus-square-fill"></i></a>
+                </div>
+            </caption>
+            <thead>
+            <tr>
+                {% for field in headers %}
+                    <th scope="col">{{ field }}</th>
+                {% endfor %}
+            </tr>
+            </thead>
+            <tbody>
+            {% for author in authors %}
+                <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ author.last_name }}</td>
+                    <td>{{ author.first_name }}</td>
+                    <td>{{ author.middle_name }}</td>
+                    <td><a class="text-decoration-none text-info"
+                           href="{{ url_for('authors.edit_author', author_id=author.id) }}">
+                        <i class="bi bi-pencil-square"></i></a>
+                    </td>
+                    <td><a class="text-decoration-none text-danger"
+                           href="{{ url_for('authors.delete_author', author_id=author.id) }}">
+                        <i class="bi bi-trash"></i></a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+
+{% block additional_css %}
+    <!-- this would be css from users.html -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/table.css') }}"/>
+{% endblock %}

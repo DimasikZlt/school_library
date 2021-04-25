@@ -1,0 +1,19 @@
+.form-group {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+}
+
+
+.btn {
+    width: 50%;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+h4 {
+    color: #2222bc;
+}

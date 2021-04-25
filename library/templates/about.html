@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %} About program {% endblock %}
+
+{% block main_content %}
+    <h1>About Python School Library</h1>
+    <div>
+            Это мой проект для Яндекс Лицея с использованием микрофреймворка Flask. <br><br>
+        <h5>
+            <img src="{{ url_for('static', filename='img/copyleft.png') }}" alt=""
+                 width="20" height="20" class="d-inline-block"
+            />
+            Design by Dmitry Zaletny
+        </h5>
+    </div>
+{% endblock %}
+
+{% block additional_css %}
+    <!-- this would be css from about.html -->
+{% endblock %}

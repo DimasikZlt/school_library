@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Python School Library {% endblock %}</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nav.css') }}"/>
+    {% block additional_css %}{% endblock %}
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/"><img src="{{ url_for('static', filename='img/logo.jpeg') }}" alt=""/>
+            Python School Library
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+                aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav ms-auto" style="--bs-scroll-height: 100px;">
+                {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page"
+                           href="{{ url_for('orders.get_orders') }}">Журнал</a>
+                    </li>
+                    {% if current_user.is_admin %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                Админ
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                <li><a class="dropdown-item" href="{{ url_for('users.get_users') }}">Пользователи</a>
+                                </li>
+                                <li><a class="dropdown-item" href="{{ url_for('authors.get_authors') }}">Авторы</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('books.get_books') }}">Книги</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('users_auth.logout') }}">Выход</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('users_auth.login') }}">Вход</a>
+                    </li>
+                {% endif %}
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Поиск" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Поиск</button>
+            </form>
+        </div>
+    </div>
+</nav>
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-8">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                            {{ message }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+</main>
+<div class="main_content">
+    {% block main_content %}{% endblock %}
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"
+        integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.min.js"
+        integrity="sha384-j0CNLUeiqtyaRmlzUHCPZ+Gy5fQu0dQ6eZ/xAww941Ai1SxSY+0EQqNXNE6DZiVc"
+        crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+{% block additional_js %}{% endblock %}
+
+</body>
+</html>
